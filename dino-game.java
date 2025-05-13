@@ -27,7 +27,7 @@ class Game extends Frame implements KeyListener{
 	final int D_H = 550;
 	static int unit = 10;
 	Color colorDinosaur = Color.pink;
-	Color colorGameOver1 = Color.black;
+	Color colorGameOver1 = Color.pink;
 	Color colorGameOver2 = Color.gray;
 	Color colorCactus1 = Color.green; 
 	Color colorCactus2 = Color.green;
@@ -81,9 +81,9 @@ class Game extends Frame implements KeyListener{
 				if (!gameOver) {
 					if (onEnterPresses) {
 						if (down) {
-							jumpY -= 30;
+							jumpY -= 40;
 						} else {
-							jumpY += 30;
+							jumpY += 40;
 						}
 					}
 					if (jumpY >= 280) {
@@ -357,3 +357,4 @@ class Game extends Frame implements KeyListener{
 		// TODO Auto-generated method stub
 	}
 } 
+//push
