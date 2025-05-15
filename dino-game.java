@@ -67,14 +67,14 @@ class Game extends Frame implements KeyListener{
 						initCactusG();
 						drawPanel.repaint();
 					} else {
-						jump += 15;
+						jump += 17;
 						drawPanel.repaint();
 					}
 				}
 			}
 		};
 
-		Timer timer = new javax.swing.Timer(40, listener);
+		Timer timer = new javax.swing.Timer(20, listener);
 		timer.start();
 		ActionListener listenerD = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
