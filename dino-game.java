@@ -67,14 +67,14 @@ class Game extends Frame implements KeyListener{
 						initCactusG();
 						drawPanel.repaint();
 					} else {
-						jump += 17;
+						jump += 15;
 						drawPanel.repaint();
 					}
 				}
 			}
 		};
 
-		Timer timer = new javax.swing.Timer(20, listener);
+		Timer timer = new javax.swing.Timer(40, listener);
 		timer.start();
 		ActionListener listenerD = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -108,24 +108,26 @@ class Game extends Frame implements KeyListener{
 
 	// create the cactus on random positions
 	private void initCactusG() {
-		Random rr = new Random();
-		int nbr = 2;// rr.nextInt(2)+1 ;;
-		int x_ = 10;
-		int y_ = 100;
-		int h_ = 60;
-		int p_ = 10;
-		myGraphs = new ArrayList<Game.MyGraph>();
-		for (int it = 0; it < nbr; it++) {
-			Random r = new Random();
-			int step = r.nextInt(10) + 1;
-			MyGraph myGraph = new MyGraph();
-			myGraph.x_ = x_ * 30 + step * 10 + 600;
-			myGraph.h_ = 10 + (6 * step) + 2;
-			myGraph.y_ = 300 - h_;
-			myGraph.p_ = 8 + step / 2;
-			myGraphs.add(myGraph);
-		}
+	Random r = new Random();
+	int numberOfCacti = 2;
+	int startX = 700;  // Starting x-coordinate for first cactus
+	int minGap = 800;  // Minimum horizontal distance between cacti
+
+	myGraphs = new ArrayList<>();
+
+	for (int i = 0; i < numberOfCacti; i++) {
+		MyGraph myGraph = new MyGraph();
+		int step = r.nextInt(10) + 1;
+
+		myGraph.x_ = startX + i * minGap + r.nextInt(50); // Random offset to add variation
+		myGraph.h_ = 10 + (6 * step) + 2;
+		myGraph.y_ = 300 - myGraph.h_;
+		myGraph.p_ = 8 + step / 2;
+
+		myGraphs.add(myGraph);
 	}
+}
+
 
 	// draw the cactus
 	private void drawCactus(Graphics g) {
@@ -206,6 +208,7 @@ class Game extends Frame implements KeyListener{
 	}
 
 	// draw the dinausor
+
 	private void drawDinausor(Graphics g, int y) {
 		int xDinausor = 180;
 		int step = 1;
@@ -255,6 +258,8 @@ class Game extends Frame implements KeyListener{
 		drawRaw(g, xDinausor + (9 - 4) * unit, y - step * unit, 6, 1);
 		step++;
 	}
+
+	
 
 	private void drawRaw(Graphics g, int Dinausor, int y, int w, int h) {
 		Graphics2D sun16 = (Graphics2D) g;
