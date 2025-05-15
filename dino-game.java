@@ -31,6 +31,7 @@ class Game extends Frame implements KeyListener{
 	Color colorGameOver2 = Color.yellow;
 	Color colorCactus1 = Color.green; 
 	Color colorCactus2 = Color.green;
+
 	int jump = 0;
 	int jumpY = 0;
 	int y = 0;
@@ -40,6 +41,7 @@ class Game extends Frame implements KeyListener{
 	int currentDinosaurX = 0;
 	int currentDinosaurY = 0;
 	boolean gameOver = false;
+	int score = 0; // add score variable
 	DrawPanel drawPanel = new DrawPanel(); 
 	public static  void main(String args[]) {
 		new Game();
@@ -69,6 +71,7 @@ class Game extends Frame implements KeyListener{
 					} else {
 						int speed = 25 + (jump /300); // speed inc over time
 						jump += speed;
+						score++; // inc score
 						drawPanel.repaint();
 					}
 				}
@@ -156,12 +159,20 @@ class Game extends Frame implements KeyListener{
 		}
 	}
 
+	private void drawScore(Graphics g) {
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.setPaint(Color.white);
+		g2d.setFont(new Font("Arial", Font.BOLD, 30));
+		g2d.drawString("Score: " + score, 950, 50);  //  Draw score
+	}
+
 	// on game over draw the game over text
 	private void gameOver(Graphics g) {
 		Graphics2D graph = (Graphics2D) g;
 		graph.setPaint(colorGameOver1);
 		graph.setFont(new Font("MV Boli", 20, 50));
 		graph.drawString("Game Over", 550, 150);
+		graph.drawString("Final Score: " + score, 500, 200);
 
 		//restart
 		Graphics2D graph1 = (Graphics2D) g;
@@ -172,6 +183,7 @@ class Game extends Frame implements KeyListener{
 
 	// restart the game
 	private void restartGame(Graphics g) {
+		dispose();
 		new Game();
 	}
 
@@ -314,6 +326,7 @@ class Game extends Frame implements KeyListener{
 			drawSun(g);
 			drawSol(g, 100, 250, 180);
 			drawDinausor(g, 400 - jumpY);
+			drawScore(g); // show live score
 			if (gameOver) {
 				gameOver(g);
 			}
