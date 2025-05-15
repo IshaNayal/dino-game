@@ -67,7 +67,8 @@ class Game extends Frame implements KeyListener{
 						initCactusG();
 						drawPanel.repaint();
 					} else {
-						jump += 15;
+						int speed = 25 + (jump /300); // speed inc over time
+						jump += speed;
 						drawPanel.repaint();
 					}
 				}
@@ -81,12 +82,12 @@ class Game extends Frame implements KeyListener{
 				if (!gameOver) {
 					if (onEnterPresses) {
 						if (down) {
-							jumpY -= 30;
+							jumpY -= 40;
 						} else {
-							jumpY += 30;
+							jumpY += 40;
 						}
 					}
-					if (jumpY >= 280) {
+					if (jumpY >= 300) {
 						down = true;
 					}
 					if (jumpY <= 0) {
