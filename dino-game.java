@@ -27,7 +27,7 @@ class Game extends Frame implements KeyListener{
 	final int D_H = 550;
 	static int unit = 10;
 	Color colorDinosaur = Color.pink;
-	Color colorGameOver1 = Color.white;
+	Color colorGameOver1 = Color.blue;
 	Color colorGameOver2 = Color.yellow;
 	Color colorCactus1 = Color.green; 
 	Color colorCactus2 = Color.green;
@@ -49,7 +49,7 @@ class Game extends Frame implements KeyListener{
 
 	public Game() {
 		super("Run Dino Run");
-		setSize(1200, 550); // set the size of the window
+		setSize(550,550); // set the size of the window
 		setVisible(true);
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
@@ -178,7 +178,7 @@ class Game extends Frame implements KeyListener{
 		Graphics2D graph1 = (Graphics2D) g;
 		graph1.setPaint(colorGameOver1);
 		graph1.setFont(new Font("MV Boli", 20, 50));
-		graph1.drawString("Press Space key to restart!!", 350, 250);
+		graph1.drawString(" Space key to restart!!", 350, 250);
 	}
 
 	// restart the game
